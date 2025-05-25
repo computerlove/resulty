@@ -2,7 +2,7 @@ package io.resulty;
 
 import org.junit.jupiter.api.Test;
 
-class ResultTest_success {
+class Result_success_Test {
 
     @Test
     void test_success() throws Exception {

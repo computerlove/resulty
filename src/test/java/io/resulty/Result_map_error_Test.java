@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ResultTest_map_error {
+class Result_map_error_Test {
 
     @Test
     void test_map_success() throws Exception {

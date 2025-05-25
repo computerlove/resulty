@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ResultTest_flatmap_success {
+class Result_flatmap_success_Test {
 
     @Test
     void test_flatmap_success_with_success() throws Exception {
