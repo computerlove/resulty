@@ -21,15 +21,15 @@ public sealed interface Result<T> extends Resulty<T> {
         }
 
         @Override
-        public <N, R extends Resulty<N>> R flatMap(Function<? super S, R> function) {
+        public <N> Result<N> flatMap(ResultFunction<S, N> function) {
             return function.apply(value);
         }
 
-        @SuppressWarnings("unchecked")
-        private <E1> Success<S> safeCast() {
-            return (Success<S>) this;
+        @Override
+        public <N> OptionalResult<N> flatMap(OptionalResultFunction<S, N> function) {
+            OptionalResult<N> apply = function.apply(value);
+            return apply;
         }
-
     }
 
     record Error<S>(Exception error) implements Result<S> {
@@ -40,8 +40,13 @@ public sealed interface Result<T> extends Resulty<T> {
         }
 
         @Override
-        public <N, R extends Resulty<N>> R flatMap(Function<? super S, R> function) {
-            return (R) this;
+        public <N> Result<N> flatMap(ResultFunction<S, N> function) {
+            return safeCast();
+        }
+
+        @Override
+        public <N> OptionalResult<N> flatMap(OptionalResultFunction<S, N> function) {
+            return OptionalResult.error(error);
         }
 
         @SuppressWarnings("unchecked")

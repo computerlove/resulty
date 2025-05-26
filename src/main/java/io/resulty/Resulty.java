@@ -1,12 +1,22 @@
 package io.resulty;
 
-import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Function;
 
 public sealed interface Resulty<T> permits OptionalResult, Result {
 
     <N> Resulty<N> map(Function<? super T, ? extends N> function);
-    <N, R extends Resulty<N>> R flatMap(Function<? super T, R> function);
 
+    <N> Result<N> flatMap(ResultFunction<T, N> function);
+    <N> OptionalResult<N> flatMap(OptionalResultFunction<T, N> function);
+
+
+    @FunctionalInterface
+    interface ResultFunction<T, R> {
+        Result<R> apply(T t);
+    }
+
+    @FunctionalInterface
+    interface OptionalResultFunction<T, R> {
+        OptionalResult<R> apply(T t);
+    }
 }
