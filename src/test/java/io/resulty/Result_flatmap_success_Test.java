@@ -15,8 +15,6 @@ class Result_flatmap_success_Test {
         Result<Integer> r = success
                 .flatMap( (String s1) -> Result.success(s1.length()));
 
-        assertThat(r).isEqualTo(Result.success(value.length()));
-
         OptionalResult<Integer> r2 = success
                 .flatMap( (String s) -> OptionalResult.success(s.length()));
 

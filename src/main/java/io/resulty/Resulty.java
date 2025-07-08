@@ -11,12 +11,12 @@ public sealed interface Resulty<T> permits OptionalResult, Result {
 
 
     @FunctionalInterface
-    interface ResultFunction<T, R> {
+    interface ResultFunction<T, R> extends Function<T, Result<R>>{
         Result<R> apply(T t);
     }
 
     @FunctionalInterface
-    interface OptionalResultFunction<T, R> {
+    interface OptionalResultFunction<T, R> extends Function<T, OptionalResult<R>>{
         OptionalResult<R> apply(T t);
     }
 }
